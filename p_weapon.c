@@ -837,11 +837,11 @@ void Weapon_Blaster_Fire (edict_t *ent)
 		damage = 10;
 	Blaster_Fire (ent, vec3_origin, damage, false, EF_BLASTER);
 
-	VectorSet(tempvec, 0, 8, 0);
+	VectorSet(tempvec, 0, 6, 0);
 	VectorAdd(tempvec, vec3_origin, tempvec);
 	Blaster_Fire (ent, tempvec, damage, false, EF_BLASTER);
 
-	VectorSet(tempvec, 0, -8, 0);
+	VectorSet(tempvec, 0, -6, 0);
 	VectorAdd(tempvec, vec3_origin, tempvec);
 	Blaster_Fire (ent, tempvec, damage, false, EF_BLASTER);
 
