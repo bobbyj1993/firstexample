@@ -884,6 +884,11 @@ void Weapon_HyperBlaster_Fire (edict_t *ent)
 		}
 		else
 		{
+			if ((ent->client->ps.gunframe == 6) || (ent->client->ps.gunframe == 9))
+				effect = EF_HYPERBLASTER;
+			else
+				effect = 0;
+			
 			rotation = (ent->client->ps.gunframe - 5) * 2*M_PI/6;
 			offset[0] = -6 * sin(rotation);
 			offset[1] = 0;
@@ -902,30 +907,8 @@ void Weapon_HyperBlaster_Fire (edict_t *ent)
 			offset[2] = 6 * cos(rotation);
 			Blaster_Fire (ent, offset, 20, true, effect);
 
+				ent->client->pers.inventory[ent->client->ammo_index]-=ent->client->pers.weapon->quantity * 3;
 
-			if ((ent->client->ps.gunframe == 6) || (ent->client->ps.gunframe == 9))
-				effect = EF_HYPERBLASTER;
-			else
-				effect = 0;
-			if (deathmatch->value)
-				damage = 15;
-			else
-				damage = 20;
-			Blaster_Fire (ent, offset, damage, true, effect);
-			if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-				ent->client->pers.inventory[ent->client->ammo_index]-=ent->client->pers.weapon->quantity * 4;
-
-			ent->client->anim_priority = ANIM_ATTACK;
-			if (ent->client->ps.pmove.pm_flags & PMF_DUCKED)
-			{
-				ent->s.frame = FRAME_crattak1 - 1;
-				ent->client->anim_end = FRAME_crattak9;
-			}
-			else
-			{
-				ent->s.frame = FRAME_attack1 - 1;
-				ent->client->anim_end = FRAME_attack8;
-			}
 		}
 
 		ent->client->ps.gunframe++;
