@@ -892,21 +892,25 @@ void Weapon_HyperBlaster_Fire (edict_t *ent)
 			offset[0] = -6 * sin(rotation);
 			offset[1] = 0;
 			offset[2] = 6 * cos(rotation);
+			Blaster_Fire (ent, offset, 20, true, effect);
 
 			rotation = (ent->client->ps.gunframe - 5) * 2*M_PI/6 + 2*M_PI/2;
 			offset[0] = -6 * sin(rotation);
 			offset[1] = 0;
 			offset[2] = 6 * cos(rotation);
+			Blaster_Fire (ent, offset, 20, true, effect);
 
 			rotation = (ent->client->ps.gunframe - 5) * 2*M_PI/6 + 4*M_PI/2;
 			offset[0] = -6 * sin(rotation);
 			offset[1] = 0;
 			offset[2] = 6 * cos(rotation);
+			Blaster_Fire (ent, offset, 20, true, effect);
 
 			rotation = (ent->client->ps.gunframe - 5) * 2*M_PI/6 + 6*M_PI/2;
 			offset[0] = -6 * sin(rotation);
 			offset[1] = 0;
 			offset[2] = 6 * cos(rotation);
+			Blaster_Fire (ent, offset, 20, true, effect);
 
 
 			if ((ent->client->ps.gunframe == 6) || (ent->client->ps.gunframe == 9))
@@ -919,7 +923,7 @@ void Weapon_HyperBlaster_Fire (edict_t *ent)
 				damage = 20;
 			Blaster_Fire (ent, offset, damage, true, effect);
 			if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-				ent->client->pers.inventory[ent->client->ammo_index]--;
+				ent->client->pers.inventory[ent->client->ammo_index]-=ent->client->pers.weapon->quantity * 4;
 
 			ent->client->anim_priority = ANIM_ATTACK;
 			if (ent->client->ps.pmove.pm_flags & PMF_DUCKED)
