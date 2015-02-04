@@ -845,10 +845,6 @@ void Weapon_Blaster_Fire (edict_t *ent)
 	VectorAdd(tempvec, vec3_origin, tempvec);
 	Blaster_Fire (ent, tempvec, damage, false, EF_BLASTER);
 
-	VectorSet(tempvec, 0, 0, 0);
-	VectorAdd(tempvec, vec3_origin, tempvec);
-	Blaster_Fire (ent, tempvec, damage, false, EF_BLASTER);
-
 	
 	ent->client->ps.gunframe++;
 }
@@ -901,12 +897,6 @@ void Weapon_HyperBlaster_Fire (edict_t *ent)
 			Blaster_Fire (ent, offset, 20, true, effect);
 
 			rotation = (ent->client->ps.gunframe - 5) * 2*M_PI/6 + 4*M_PI/2;
-			offset[0] = -6 * sin(rotation);
-			offset[1] = 0;
-			offset[2] = 6 * cos(rotation);
-			Blaster_Fire (ent, offset, 20, true, effect);
-
-			rotation = (ent->client->ps.gunframe - 5) * 2*M_PI/6 + 6*M_PI/2;
 			offset[0] = -6 * sin(rotation);
 			offset[1] = 0;
 			offset[2] = 6 * cos(rotation);
